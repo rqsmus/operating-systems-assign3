@@ -41,6 +41,7 @@ void simple_init() {
   uintptr_t aligned_memory_start = (memory_start + 7) & ~0x7;  /* TODO: Alignment, Round up     */
   uintptr_t aligned_memory_end   = memory_end & ~0x7;          /* TODO: Alignment, Round down   */
   BlockHeader * last;
+  
 
   /* Already initalized ? */
   if (first == NULL) {
