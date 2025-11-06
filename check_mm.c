@@ -279,6 +279,23 @@ END_TEST
 /**
  * { You may provide more unit tests here, but remember to add them to simple_malloc_suite }
  */
+START_TEST (test_simple_next_fit)
+{
+  int *ptr1;
+  int *ptr2;
+  int *ptr3;
+
+  ptr1 = MALLOC(10 * sizeof(int));
+  ptr2 = MALLOC(10 * sizeof(int));
+  FREE(ptr1);
+  ptr3 = MALLOC(10 * sizeof(int));
+
+/* Test whether ptr3 is bigger then ptr2*/
+  ck_assert(ptr2 < ptr3);
+}
+
+END_TEST
+
 
 /**
  * @name   Example unit test suite.
@@ -293,6 +310,7 @@ Suite* simple_malloc_suite()
   tcase_add_test (tc_core, test_simple_allocation);
   tcase_add_test (tc_core, test_simple_unique_addresses);
   tcase_add_test (tc_core, test_memory_exerciser);
+  tcase_add_test (tc_core, test_simple_next_fit);
 
   suite_add_tcase(s, tc_core);
   return s;
